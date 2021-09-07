@@ -32,7 +32,6 @@ arduino --install-boards "esp32:esp32"
 BOARD="esp32:esp32:esp32s2"
 arduino --board "${BOARD}" --save-prefs
 CC="arduino --verify --board ${BOARD}"
-arduino --install-library "Bounce2"
 arduino --install-library "WebSockets"
 arduino --install-library "ArduinoJson"
 #arduino --install-library "WiFiManager"

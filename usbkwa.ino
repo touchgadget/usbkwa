@@ -36,7 +36,7 @@
 #include <USB.h>
 #include <USBHIDKeyboard.h>
 #include <WiFi.h>
-#include <WiFiManager.h>  // Install from IDE Library Manager
+#include <WiFiManager.h>      // See README.md
 #include <WebSocketsServer.h> // Install WebSockets by Markus Sattler from IDE Library manager
 #include <WebServer.h>
 #include <ESPmDNS.h>
