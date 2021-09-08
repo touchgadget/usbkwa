@@ -34,7 +34,6 @@ arduino --board "${BOARD}" --save-prefs
 CC="arduino --verify --board ${BOARD}"
 arduino --install-library "WebSockets"
 arduino --install-library "ArduinoJson"
-#arduino --install-library "WiFiManager"
 git clone https://github.com/tzapu/WiFiManager ${LIBDIR}/WiFiManager
 cd ${LIBDIR}/WiFiManager
 git cherry-pick a9507c9
