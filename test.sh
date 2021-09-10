@@ -27,7 +27,7 @@ arduino --pref "compiler.warning_level=default" \
     --pref "update.check=false" \
     --pref "editor.external=true" \
     --save-prefs
-arduino --pref "boardsmanager.additional.urls=https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json" --save-prefs
+arduino --pref "boardsmanager.additional.urls=https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json" --save-prefs
 arduino --install-boards "esp32:esp32"
 BOARD="esp32:esp32:esp32s2"
 arduino --board "${BOARD}" --save-prefs
@@ -36,21 +36,6 @@ arduino --install-library "WebSockets"
 arduino --install-library "ArduinoJson"
 git clone https://github.com/tzapu/WiFiManager ${LIBDIR}/WiFiManager
 cd ${LIBDIR}/WiFiManager
-git cherry-pick a9507c9
-git apply - <<EOF
-diff --git a/WiFiManager.cpp b/WiFiManager.cpp
-index 1dd199e..305ed11 100644
---- a/WiFiManager.cpp
-+++ b/WiFiManager.cpp
-@@ -3529,7 +3529,7 @@ void WiFiManager::WiFiEvent(WiFiEvent_t event,arduino_event_info_t info){
-         WiFi.reconnect();
-       #endif
-   }
--  else if(event == SYSTEM_EVENT_SCAN_DONE){
-+  else if(event == ARDUINO_EVENT_SC_SCAN_DONE){
-     uint16_t scans = WiFi.scanComplete();
-     WiFi_scanComplete(scans);
-   }
-EOF
+git checkout esp32s2
 ln -s ~/Sync/usbkwa ${LIBDIR}/..
 cd ${IDEDIR}

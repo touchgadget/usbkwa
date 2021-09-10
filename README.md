@@ -66,20 +66,5 @@ The following library is installed from github.com and patched for Arduino ESP32
 cd <IDE library directory>
 git clone https://github.com/tzapu/WiFiManager
 cd WiFiManager
-git cherry-pick a9507c9
-git apply - <<EOF
-diff --git a/WiFiManager.cpp b/WiFiManager.cpp
-index 1dd199e..305ed11 100644
---- a/WiFiManager.cpp
-+++ b/WiFiManager.cpp
-@@ -3529,7 +3529,7 @@ void WiFiManager::WiFiEvent(WiFiEvent_t event,arduino_event_info_t info){
-         WiFi.reconnect();
-       #endif
-   }
--  else if(event == SYSTEM_EVENT_SCAN_DONE){
-+  else if(event == ARDUINO_EVENT_SC_SCAN_DONE){
-     uint16_t scans = WiFi.scanComplete();
-     WiFi_scanComplete(scans);
-   }
-EOF
+git checkout esp32s2
 ```
