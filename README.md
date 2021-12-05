@@ -50,21 +50,13 @@ will not work. The not yet released ESP32 S3 should also work.
 ## Software
 
 * [Arduino IDE 1.8.16](https://www.arduino.cc/en/software)
-* [Arduino ESP32 2.0.0](https://github.com/espressif/arduino-esp32#esp32-s2-and-esp32-c3-support)
+* [Arduino ESP32 2.0.1](https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html#installing-using-boards-manager)
 
 The following libraries can be installed using the IDE Library Manager.
 
 * [WebSockets by Markus Sattler](https://github.com/Links2004/arduinoWebSockets)
 * [ArduinoJson by Benoit Blanchon](https://arduinojson.org/)
-
-The following library is installed from github.com and patched for Arduino ESP32
-2.0.0.
-
 * [WiFiManager by tzapu/tablatronix](https://github.com/tzapu/WiFiManager)
 
-```
-cd <IDE library directory>
-git clone https://github.com/tzapu/WiFiManager
-cd WiFiManager
-git checkout esp32s2
-```
+The library manager installs WiFiManager 2.0.5-beta which includes support
+for Arduino-esp32 2.0.x and works on ESP32 S2 boards.
