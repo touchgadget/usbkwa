@@ -34,3 +34,5 @@
 *.odg
 *.png
 *.jpg
+
+esp32.esp32.*/

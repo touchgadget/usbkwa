@@ -1,12 +1,17 @@
 #!/bin/bash
-IDEVER="1.8.16"
+# $ source test.sh
+# $ ./arduino&
+PROJECT="usbkwa"
+IDEVER="1.8.19"
 machine=`uname -m`
-if [[ $machine =~ .*armv.* ]]
-then
-    WORKDIR="/var/tmp/autobuild_esp32s2_usbkwa_$$"
+if [[ $machine =~ .*armv.* ]] ; then
+    WORKDIR="/var/tmp/autobuild_usbkwa_$$"
     ARCH="linuxarm"
+elif [[ $machine =~ .*aarch64.* ]] ; then
+    WORKDIR="/var/tmp/autobuild_usbkwa_$$"
+    ARCH="linuxaarch64"
 else
-    WORKDIR="/tmp/autobuild_esp32s2_usbkwa_$$"
+    WORKDIR="/tmp/autobuild_usbkwa_$$"
     ARCH="linux64"
 fi
 mkdir -p ${WORKDIR}
@@ -24,7 +29,7 @@ mkdir -p "${LIBDIR}"
 export PATH="${IDEDIR}:${PATH}"
 cd ${IDEDIR}
 which arduino
-# Install board package
+unzip -d ./tools ~/Downloads/EspExceptionDecoder-2.0.2.zip
 if [ -d ~/Sync/ard_staging ]
 then
     ln -s ~/Sync/ard_staging ${IDEDIR}/portable/staging
@@ -36,7 +41,7 @@ arduino --pref "compiler.warning_level=default" \
     --save-prefs
 arduino --pref "boardsmanager.additional.urls=https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json" --save-prefs
 arduino --install-boards "esp32:esp32"
-BOARD="esp32:esp32:esp32s2"
+BOARD="esp32:esp32:adafruit_qtpy_esp32s3_nopsram"
 arduino --board "${BOARD}" --save-prefs
 CC="arduino --verify --board ${BOARD}"
 arduino --install-library "WebSockets"
@@ -44,7 +49,4 @@ arduino --install-library "ArduinoJson"
 arduino --install-library "WiFiManager"
 ln -s ~/Sync/usbkwa ${LIBDIR}/..
 cd ${IDEDIR}
-git init
-echo -e "*.gz\n*.bz2\n*.tgz\n*.zip\njava/\ntools/\ntools-builder/\nportable/" >.gitignore
-git add .
-git commit -m "First draft"
+ctags -R . ~/Sync/esp-idf
